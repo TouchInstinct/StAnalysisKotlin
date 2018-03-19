@@ -1,0 +1,46 @@
+<idea-plugin>
+    <id>ru.touchin.staticanalysis</id>
+    <name>Static analysis runner</name>
+    <version>2.0</version>
+    <vendor email="arseniy.borisov@touchin.ru" url="http://www.touchin.ru">Touch Instinct</vendor>
+
+    <description><![CDATA[
+        Helper plugin for static analysis in Touch Instinct
+    ]]></description>
+
+    <change-notes><![CDATA[
+        1.0 First version
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="145.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action id="AnalysisRunner.Run"
+                class="ru.touchin.staticanalysis.actions.RunStaticAnalysis"
+                icon="PluginIcons.PLUGIN_ICON"
+                text="Touchin static analysis"
+                description="Touchin static analysis">
+            <add-to-group group-id="ToolbarRunGroup" anchor="last"/>
+            <keyboard-shortcut first-keystroke="control shift S" keymap="$default"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Static Analysis Log" icon="PluginIcons.PLUGIN_ICON" anchor="bottom"
+                    factoryClass="ru.touchin.staticanalysis.notifications.LogToolWindowFactory"/>
+        <projectService id="ConsoleView" serviceImplementation="ru.touchin.staticanalysis.notifications.ConsoleService"/>
+    </extensions>
+
+</idea-plugin>
